@@ -1,0 +1,34 @@
+version: "3"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend/Dockerfile.buster
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - type: bind
+        source: backend/
+        target: /code
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=hola
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_ENGINE=postgres
+      - DB_HOST=db_postres
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+
+volumes:
+  postgres_data: 
+  
