@@ -1,0 +1,41 @@
+FROM python:3.6.15-slim-buster as builder
+
+WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 dependencies
+RUN apt-get update && \
+    apt-get -y install \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    libgraphviz-dev \
+    && rm -rf /var/lib/apt/list/*
+
+# RUN pip install --upgrade pip
+
+# install dependencies
+COPY ./requirements.txt .
+# opciones de no guardar cache de instalacion, no instalar dependencias extras y colocar los paquetes en la direccion especificada
+RUN pip wheel --no-cache-dir --no-deps -w /usr/src/app/wheels -r requirements.txt
+
+# imagen final para produccion
+FROM python:3.6.15-slim-buster
+
+WORKDIR /usr/src/app
+
+# usuario comun para que no tenga privilegios de superusuario
+RUN addgroup -S userdjango && adduser -S userdjango -G userdjango
+
+# RUN apk update && apk add libpq
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+COPY . .
+
+# cambia el acceso para el usuario userdjango
+RUN chown -R userdjango:userdjango /usr/src/app
+USER userdjango

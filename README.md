@@ -1,7 +1,9 @@
 # Despliegue Django y React  
 Esta es una aplicacion monolitica, es decir se integra en front con el backend, para eso se usa el
 modulo Webpack loader. 
-### Lecturas utiles: https://github.com/django-webpack/django-webpack-loader
+### Lecturas utiles: 
+-   https://github.com/django-webpack/django-webpack-loader
+-   https://youtu.be/4wdNx2j1j-w
 
 ![react-loader-to-django](doc-img/webpack-loader.png)
 
@@ -17,7 +19,7 @@ Los dockerfiles haran el trabajo de instalar las dependencias, manteniendo las i
 ## Para desarollo : 
 Compilar del lado del front 
 ```shell
-npx webpack --config webpack.config.js --watch 
+npx webpack --config config/webpack.config.dev.js --watch 
 ```
 
 Mientras a su vez del lado del backend se corre el siguiente comando   
