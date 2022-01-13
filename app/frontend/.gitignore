@@ -9,6 +9,7 @@
 # production
 /build
 ../webpack-stat.prod.json
+../webpack-stat.dev.json
 
 # misc
 .DS_Store

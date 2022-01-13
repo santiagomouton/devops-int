@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 WORKDIR /usr/src/app
 
-COPY ./requeriments.txt .
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
 # Se copia el codigo al final de todo para no volver a instalar todo en caso de que se haya modificado el codigo
