@@ -15,7 +15,7 @@ Agregar que comenzado la interccion del usuario, las peticiones siempre deben di
 8.  S3, un almacenamiento para guardar los archivos estaticos, como imagenes o videos.
 9.  ElasticCache es una memoria muy rapida que nos guardara las peticiones mas frecuentes de la bdd. Disminuye los tiempos de lectura. 
 10. RDS es un servicio que ofrece escalabilidad horizontal para lectura de bases de datos relacionales. 
-<p><img src="https://d2908q01vomqb2.cloudfront.net/4d134bc072212ace2df385dae143139da74ec0ef/2021/08/24/Escalando-vertical-y-horizontalmente-su-instancia-Amazon-RDS-1.png" width="250"/> </p>
+<p><img src="https://d2908q01vomqb2.cloudfront.net/4d134bc072212ace2df385dae143139da74ec0ef/2021/08/24/Escalando-vertical-y-horizontalmente-su-instancia-Amazon-RDS-1.png" width="450" height="400"/> </p>
 La bdd esclavo es una replica del master en caso de que ocurra algo en la zona A; por supuesto en cada zona tambien hay RAID. Para garantizar consistencia de datos la bdd esclavo solo puede leida.
 
 11. Uso de DynamoDB para base de dato no relacional. TIene muchas caracteristicas, como la alta disponibilidad, escalabilidad y optimizacion. La forma en que replica para tener una alta disponibilidad es mas complejo para explicar pero tambien sigue los metodos basicos como tener instancias en las zonas de disponibilidad.
