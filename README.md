@@ -2,7 +2,7 @@
 
 A continuacion una descripcion punto por punto de los componentes:
 
-![alt arquitecturaParaAplicacion](https://raw.githubusercontent.com/santiagomouton/devops-int/prueba1/ArquitecturaAplicacion.png)
+![alt arquitecturaParaAplicacion](https://github.com/santiagomouton/devops-int/blob/prueba1/ArquitecturaAplicacion.png)
 
 1.  Route 53 es el servicio dns que provee Amazon, con esto podran acceder desde internet con un nombre de dominio.
 2.  WAF, un firewall para proteger la aplicacion de ataques que pongan en riesgo la seguridad o disponibilidad.
