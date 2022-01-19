@@ -1,1 +1,1 @@
-# CI/CD Jenkins, Github, AWS
+# CI/CD Github actions, AWS
