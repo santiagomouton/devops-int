@@ -10,7 +10,7 @@ try{
         throw `found profanity words`;
 
     console.log('Everything OK!')
-    
+
 }catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error);
 }
