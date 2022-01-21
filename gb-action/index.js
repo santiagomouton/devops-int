@@ -14,7 +14,7 @@ async function read() {
 
 try {
     // parse in words
-    const parts = read().split(' ');
+    const parts = (read()+'').split(' ');
     let array = [];
     for( const w of parts ){
         if ( words.search(w))
