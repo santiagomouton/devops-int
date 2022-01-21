@@ -17,11 +17,11 @@ Creo el cluster, un task, un servicio y un balanceador de cargas asociado para p
 ### **Github Actions** 
 Tomo la planilla preconfigurada que ya tiene aws para los usuarios de Github [referencia](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service). Los jobs se activaran cada vez que se realice un push en la rama prueba3 y se modifique el archivo index.html.
 
-Las acciones previas se encargaran de la parte del despliegue, se puede tambien agregar cuantos pasos extras se desee para realizar tests de integracion; para eso activamos los jobs por cada pull request, de esa forma podemos no aprobar los cambios en caso de que los tests fallen. 
+Las acciones previas se encargaran de la parte del despliegue, tambien se pueden agregar cuantos pasos extras se deseen para realizar tests de integracion para testear que los cambios no rompan nada, de esa forma podemos tener cierto grado de control en los cambios en un entorno de desarrollo. 
 
-EN el directorio ` gb-action/ ` hay un action que encarga de correr un test que verifique  que el index.html no contenga palabras malsonantes, este modulo de js fue util: [bad-words](https://github.com/web-mech/badwords#isprofane)  
+EN el directorio ` gb-action/ ` se creo un action que se encarga de correr un test que verifica  que el index.html no contenga palabras malsonantes. Para realizarlo, este modulo de js fue util: [bad-words](https://g
 
-**Ejemplo:**  
+**Ejemplo resultado final:**  
 
 `index.html`
 ```html index.html
