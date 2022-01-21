@@ -1,29 +1,16 @@
 const core = require('@actions/core');
 const fs = require('fs');
-import { ProfanityEngine } from "@coffeeandfun/google-profanity-words";
-const words = new ProfanityEngine();   
+var Detector = require('bad-words'),
+detector = new Detector();
 
-// `path` input defined in action metadata file
-const path = core.getInput('path');
-
-async function read() {
-    await fs.readFile( path, function(err, data) {
-        return data;
-    });
-}
-
-try {
-    // parse in words
-    const parts = (read()+'').split(' ');
-    let array = [];
-    for( const w of parts ){
-        if ( words.search(w))
-            array.push(w)
-    }
-    if( array.length )
-        throw `found profanity words: ${ array }.`;
+try{
+    const path = core.getInput('path');
+    var text = fs.readFileSync(path, 'utf8')
+    if ( detector.isProfane(text) )
+        throw `found profanity words`;
 
     console.log('Everything OK!')
-} catch (error) {
+    
+}catch (error) {
     core.setFailed(error.message);
 }
