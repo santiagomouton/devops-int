@@ -1703,7 +1703,7 @@ class ProfanityEngine {
         if (config && config.test) {
             path = 'data/list.txt'
         } else {
-            path = './node_modules/@coffeeandfun/google-profanity-words/data/list.txt';
+            path = './gb-action/node_modules/@coffeeandfun/google-profanity-words/data/list.txt';
         }
 
         this.terms = external_fs_.readFileSync(`${path}`, 'utf8').split('\n');
