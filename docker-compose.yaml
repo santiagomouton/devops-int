@@ -30,9 +30,9 @@ services:
       context: app/frontend/
       dockerfile: Dockerfile
     container_name: frontend
-    command: sh -c "npm run --prefix ./frontend start"
+    command: sh -c "npm run start"
     volumes:
-    - ./app:/usr/src/app
+    - ./app/frontend:/usr/src/app
     ports:
     - "3000:3000"
 
