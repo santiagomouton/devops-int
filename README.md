@@ -58,5 +58,7 @@ Para el despliegue a produccion no tuve exito con el loader, el collect de webpa
 La pagina queda la siguiente forma:
 
 ![page](doc-img/ngingserve.png)
-**Errores en los paths**  
+
+**Errores en los paths** 
+ 
 ![pathsfail](doc-img/pathsfail.png)  
