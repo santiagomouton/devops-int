@@ -6,11 +6,6 @@
 # testing
 /coverage
 
-# production
-/build
-../webpack-stat.prod.json
-../webpack-stat.dev.json
-
 # misc
 .DS_Store
 .env.local
@@ -21,9 +16,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# dockerfile liviano
-../Dockerfile
-
-# cache
-../backend/__pycache__/*

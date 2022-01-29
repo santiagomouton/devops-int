@@ -1,11 +1,9 @@
 FROM python:3.6.15-slim-buster as builder
 
 WORKDIR /usr/src/app
-
-# set environment variables
 ENV PYTHONUNBUFFERED 1
 
-# install psycopg2 dependencies
+# instalo las herramientas necesarias para el paquete psycopg2
 RUN apt-get update && \
     apt-get -y install \
     gcc \
@@ -14,28 +12,29 @@ RUN apt-get update && \
     libgraphviz-dev \
     && rm -rf /var/lib/apt/list/*
 
-# RUN pip install --upgrade pip
-
-# install dependencies
+# instalo dependencias
 COPY ./requirements.txt .
 # opciones de no guardar cache de instalacion, no instalar dependencias extras y colocar los paquetes en la direccion especificada
 RUN pip wheel --no-cache-dir --no-deps -w /usr/src/app/wheels -r requirements.txt
 
+
 # imagen final para produccion
 FROM python:3.6.15-slim-buster
-
 WORKDIR /usr/src/app
+COPY . .
 
 # usuario comun para que no tenga privilegios de superusuario
-RUN addgroup -S userdjango && adduser -S userdjango -G userdjango
+# RUN addgroup -S userdjango && adduser -S userdjango -G userdjango && \
+#     chown -R userdjango:userdjango /usr/src/app
+RUN useradd -u 5000 userdjango && chown -R userdjango:userdjango /usr/src/app
 
 # RUN apk update && apk add libpq
+# copio los binarios wheels del builder y los instalo
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache /wheels/*
 
-COPY . .
-
 # cambia el acceso para el usuario userdjango
-RUN chown -R userdjango:userdjango /usr/src/app
-USER userdjango
+USER userdjango 
+# Django react loader de los assests
+CMD [ "sh", "./entrypoint.sh" ]
