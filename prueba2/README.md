@@ -80,7 +80,7 @@ En produccion no tuve exito con el loader, el collect de webpack no logra cargar
 
 La pagina queda la siguiente forma:
 
-![page](doc-img/ngingserve.png)
+![page](doc-img/sinCSS.png)
 
 **Errores en los paths** 
  
