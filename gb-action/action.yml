@@ -1,9 +1,0 @@
-name: 'test profanity words'
-description: 'Test for found profanity words'
-inputs:
-  path:
-    description: 'path to file to test'
-    required: true
-runs:
-  using: 'node16'
-  main: 'dist/index.js'

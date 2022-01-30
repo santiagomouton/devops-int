@@ -1,38 +1,20 @@
-name: test, buildeo y despliegue en ec2
+name: buildeo y despliegue en ec2
 
 on:
   push:
-    branches:
-      - prueba3
     paths:
       - 'index.html'
 
-
 jobs:
-  tests:
-    name: Test
-    runs-on: ubuntu-latest
-    env:
-      DOC_PATH: ./index.html
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: search profanity words
-        uses: ./gb-action
-        with:
-          path: ${{ env.DOC_PATH }}
-
-  deploy:
-    name: Deploy
-    needs: [tests]
+  aws:
+    name: buildAndDeploy
     runs-on: ubuntu-latest
     env:
       AWS_REGION: sa-east-1                         
       ECR_REPOSITORY: repo                          
       ECS_SERVICE: Service-First                    
       ECS_CLUSTER: prod-cluster                    
-      ECS_TASK_DEFINITION: .aws/task-definition.json                                                     
+      ECS_TASK_DEFINITION: .github/workflows/task-definition.json                                                     
       CONTAINER_NAME: nginxserve                   
 
     steps:
