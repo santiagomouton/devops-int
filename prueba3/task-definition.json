@@ -5,15 +5,7 @@
       {
         "dnsSearchDomains": [],
         "environmentFiles": null,
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": null,
-          "options": {
-            "awslogs-group": "/ecs/TASK-First",
-            "awslogs-region": "sa-east-1",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
+        "logConfiguration": null,
         "entryPoint": [],
         "portMappings": [
           {
