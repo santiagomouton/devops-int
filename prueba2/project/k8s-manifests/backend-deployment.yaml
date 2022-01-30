@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: backend
+  name: backend
+  namespace: djangoapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: backend
+    spec:
+      containers:
+        - env:
+            - name: DB_ENGINE
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_ENGINE
+                  name: enviroments-prod-env
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: enviroments-prod-env
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_NAME
+                  name: enviroments-prod-env
+            - name: DB_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PASS
+                  name: enviroments-prod-env
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PORT
+                  name: enviroments-prod-env
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_USER
+                  name: enviroments-prod-env
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: SECRET_KEY
+                  name: mysecret
+            - name: DJANGO_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  key: DJANGO_DEBUG
+                  name: enviroments-prod-env
+          image: santlink/backend:djangoApp
+          name: backend
+          ports:
+            - containerPort: 8000
+          resources: {}
+      restartPolicy: Always
