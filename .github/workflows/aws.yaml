@@ -3,7 +3,7 @@ name: buildeo y despliegue en ec2
 on:
   push:
     paths:
-      - 'index.html'
+      - 'prueba3/index.html'
 
 jobs:
   aws:
@@ -14,7 +14,7 @@ jobs:
       ECR_REPOSITORY: repo                          
       ECS_SERVICE: Service-First                    
       ECS_CLUSTER: prod-cluster                    
-      ECS_TASK_DEFINITION: .github/workflows/task-definition.json                                                     
+      ECS_TASK_DEFINITION: prueba3/task-definition.json                                                     
       CONTAINER_NAME: nginxserve                   
 
     steps:
